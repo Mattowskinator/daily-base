@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script type="text/javascript" src="lib/babylon/babylon.js.map"></script> -->
+    <!-- <script type="text/javascript" src="lib/babylon/recast.js"></script> -->
+    <script type="text/javascript" src="lib/babylon/babylon.js"></script>
+    <!-- <script type="text/javascript" src="lib/babylon/babylon-recast-5.0.js"></script> -->
+    <script type="text/javascript" src="lib/babylon/curve.js"></script>
+    <script type="text/javascript" src="lib/bin-packing/packer.js"></script>
+    <script type="text/javascript" src="lib/bin-packing/packer.growing.js"></script>
+    <script type="text/javacsript" src="lib/astar/binary-heap.js"></script>
+    <script type="text/javascript" src="util/util.js"></script>
+    <script type="module" src="src/navigation.js"></script>
+    <script type="module" src="src/gridmap.js"></script>
+    <script type="module" src="src/effect.js"></script>
+    <script type="module" src="src/projectile.js"></script>
+    <script type="module" src="src/building.js"></script>
+    <script type="module" src="src/unit.js"></script>
+    <script type="module" src="src/ui.js"></script>
+    <script type="module" src="src/app.js"></script>
+    <script type="module" src="main.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <template id="army-card-template">
+        <div class="army-card">
+            <button class="army-card-button"></button>
+            <div class="card-image"></div>
+            <h3 class="card-price">Title</h3>
+            <button class="remove-button card-small-button">-</button>
+            <button class="info-button card-small-button">i</button>
+            <h3 class="army-count">x0</h3>
+        </div>
+    </template>
+
+
+
+    <canvas id="renderCanvas" style="width: 100%; height: 100%"></canvas>
+
+    <div id="ui">
+
+        <div id="stat" class="panel center-x">
+            <button id="start-button">START</button>
+        </div>
+
+        <div id="train" class="panel center-x">
+            <h2>TRAIN YOUR ARMY</h2>
+            <div id="train-grid-container" class="no-scrollbar">
+                <div id="train-grid">
+                    
+                </div>
+            </div>
+            <button class="panel-button">TRAIN</button>
+        </div>
+
+        <div id="army" class="panel center-x">
+            <div id="army-grid-container" class="no-scrollbar">
+                <div id="army-grid">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

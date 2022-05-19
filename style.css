@@ -1,0 +1,370 @@
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 2.5vmin;
+}
+
+#ui {
+    position: absolute;
+    inset: 0; /* short hand for top, left, bottom, right: 0 */
+    pointer-events: none;
+
+
+    --card-width: 16vmin;
+    --card-height: 20vmin;
+}
+
+#ui > * {
+    pointer-events: all;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #FFF;
+}
+
+.panel {
+    background-color: #333;
+    border-radius: 1vmin;
+}
+
+.center-x {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+button {
+    background-color: #666;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 1vmin;
+    color: white;
+    -webkit-tap-highlight-color: #777;
+}
+
+button:hover {
+    background-color: #888;
+}
+
+button:active {
+    background-color: #DDD;
+    /* color: #222; */
+}
+
+button:disabled {
+    background-color: #444;
+    cursor: default;
+}
+
+
+/* 
+    Stats bar css
+*/
+
+#stat {
+    height: 8vmin;
+    width: 100vmin;
+    top: 0;
+}
+
+#start-button {
+    position: fixed;
+    height: 6vmin;
+    width: 30vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1vmin;
+    font-size: 4vmin;
+    border-radius: 2vmin;
+    color: white;
+    font-weight: 600;
+    
+    /* background-position-x: 0px;
+    background-position-y: 0px; */
+    text-shadow: 2px 2px 2px #000;
+    --background-color: rgba(100,100,100,1);
+    background-image: 
+        linear-gradient(to top, var(--background-color) 0%, var(--background-color) 100%), 
+        url("res/images/background-flame.png");
+    background-repeat: repeat;
+    transition: --background-color 200ms;
+    transition: transform 200ms;
+
+    animation-name: background-scroll;
+    animation-duration: 2000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+#start-button:disabled {
+    --background-color: #222;
+    color: #333;
+    text-shadow: none;
+}
+
+#start-button:hover:not(#start-button:disabled) {
+    --background-color: rgba(0,0,0,.5);
+}
+
+#start-button:active {
+    --background-color: rgba(0,0,0,0);
+}
+
+#start-button.disappear {
+    transform: translateX(-50%) rotateX(-90deg);
+}
+
+@keyframes background-scroll {
+    from {
+        background-position-x: 0px;
+        background-position-y: 0px;
+    }
+
+    to {
+        background-position-x: 0px;
+        background-position-y: -512px;
+    }
+}
+
+
+/*
+    Card css
+*/
+
+.card-small-button {
+    position: absolute;
+    width: 2.5vmin;
+    height: 2.5vmin;
+    border-radius: 1vmin;
+    font-size: 80%;
+    font-weight: 600;
+    color: white;
+    right: 1vmin;
+    top: 1vmin;
+}
+
+.remove-button {
+    background-color: rgb(204, 29, 29);
+    color: white;
+}
+
+.remove-button:hover {
+    background-color: rgb(250, 71, 71);
+}
+
+.remove-button:active {
+    background-color: rgb(255, 228, 228);
+    color: black;
+}
+
+.info-button {
+    background-color: rgb(31, 98, 187);
+}
+
+.info-button:hover {
+    background-color: rgb(80, 136, 209);
+}
+
+.info-button:active {
+    background-color: rgb(231, 241, 255);
+    color: black;
+}
+
+.card-selected {
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 2px;
+}
+
+.army-count {
+    position: absolute;
+    text-align: left;
+    width: 8vmin;
+    height: 4vmin;
+    left: 1vmin;
+    top: 1vmin;
+    text-shadow: 2px 2px 2px #222;
+}
+
+.army-card {
+    
+    position: relative;
+    /* left: 0; default value for transitions */
+
+    --card-color: #222;
+
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: 1vmin;
+
+
+    background-color: var(--card-color);
+
+    /* background-image: url("https://picsum.photos/200");
+    background-color: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%); */
+
+    transition: transform 100ms;
+    /* transition: left 100ms; */
+    overflow: hidden;
+
+    animation: appear 200ms ease-out;
+}
+
+.army-card > .card-image {
+    width: var(--card-width);
+    height: var(--card-width);
+    
+    background-image: 
+        linear-gradient(to top, var(--card-color) 0%, #2220 60%, #2220 100%),
+        url("res/images/thumb.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+}
+
+.card-square {
+    height: var(--card-width);
+}
+
+.card-title, .card-price {
+    position: absolute;
+    
+    min-width: var(--card-width);
+    max-width: var(--card-width);
+    /* height: calc(var(--card-height) - 1vmin); */
+    bottom: 1vmin;
+
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    hyphens: auto;
+
+    font-size: 2vmin;
+
+    pointer-events: none;  
+    /* text-align: center; */
+    /* vertical-align: bottom; */
+}
+
+.army-card:hover {
+    --card-color: #444;
+    transform: scale(104%);
+}
+
+.army-card-button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    opacity: 0;
+}
+
+.army-card-button:hover {
+    background-color: rgba(0,0,0,0);
+}
+
+.army-card-button:active {
+    background-color: #fff;
+    opacity: .25;
+}
+
+
+
+
+
+.panel-button {
+    position: fixed;
+    top: -4vmin;
+    right: 1vmin;
+    /* background-color: #444; */
+    color: white;
+    font-size: 100%;
+    /* font-weight: 00; */
+    width: 16vmin;
+    height: 4vmin;
+    border-radius: 1vmin 1vmin 0vmin 0vmin;
+}
+
+#train {
+    display: flex;
+    flex-direction: column;
+    height: 50vmin;
+    width: 100vmin;
+    bottom: -32vmin; /* extended: 25vmin, unextended: -32vmin */
+
+    transition: bottom 200ms;
+}
+
+#train-grid-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* centers the child div */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    justify-items: center;
+}
+
+#train-grid {
+    --grid-columns: 5;
+    --grid-rows: 3;
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), var(--card-width));
+    grid-template-rows: repeat(var(--grid-rows), var(--card-height));
+    row-gap: 1.5vmin;
+    column-gap: 1vmin;
+    justify-items: center;
+    padding: 1vmin;
+}
+
+#army {
+    height: 18vmin;
+    width: 100vmin;
+    bottom: 0;
+}
+
+#army-grid-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#army-grid {
+    --army-slot-count: 10;
+    display: grid;
+    grid-template-columns: repeat(var(--army-slot-count), var(--card-width));
+    grid-template-rows: repeat(1, var(--card-height));
+    row-gap: 1.5vmin;
+    column-gap: 1vmin;
+    justify-items: center;
+    padding: 1vmin;
+}
+
+
+
+@keyframes appear {
+    from {
+        transform: rotateX(90deg);
+    }
+
+    to {
+        transform: rotateX(0deg);
+    }
+}
+
+
